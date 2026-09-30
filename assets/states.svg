@@ -1,0 +1,51 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="560" height="176" viewBox="0 0 560 176" font-family="Segoe UI, Segoe UI Variable, Helvetica, Arial, sans-serif">
+  <!-- dark taskbar -->
+  <g>
+    <rect width="272" height="176" rx="12" fill="#1c1c1c"/>
+    <text x="20" y="30" font-size="13" font-weight="600" fill="#e5e5e5">Dark taskbar</text>
+    <text x="118" y="56" font-size="11" fill="#9ca3af" text-anchor="middle">Caps</text>
+    <text x="172" y="56" font-size="11" fill="#9ca3af" text-anchor="middle">Num</text>
+    <text x="226" y="56" font-size="11" fill="#9ca3af" text-anchor="middle">Scroll</text>
+
+    <text x="20" y="95" font-size="12" font-weight="600" fill="#e5e5e5">ON</text>
+    <rect x="102" y="72" width="32" height="32" rx="7.7" fill="#16A34A"/>
+    <text x="118" y="96" font-size="23" font-weight="700" fill="#fff" text-anchor="middle">A</text>
+    <rect x="156" y="72" width="32" height="32" rx="7.7" fill="#2563EB"/>
+    <text x="172" y="96" font-size="23" font-weight="700" fill="#fff" text-anchor="middle">1</text>
+    <rect x="210" y="72" width="32" height="32" rx="7.7" fill="#D97706"/>
+    <text x="226" y="96" font-size="23" font-weight="700" fill="#fff" text-anchor="middle">S</text>
+
+    <text x="20" y="145" font-size="12" font-weight="600" fill="#e5e5e5">OFF</text>
+    <rect x="103.25" y="123.25" width="29.5" height="29.5" rx="7" fill="none" stroke="#9CA3AF" stroke-width="2.5"/>
+    <text x="118" y="146" font-size="23" font-weight="700" fill="#9CA3AF" text-anchor="middle">A</text>
+    <rect x="157.25" y="123.25" width="29.5" height="29.5" rx="7" fill="none" stroke="#9CA3AF" stroke-width="2.5"/>
+    <text x="172" y="146" font-size="23" font-weight="700" fill="#9CA3AF" text-anchor="middle">1</text>
+    <rect x="211.25" y="123.25" width="29.5" height="29.5" rx="7" fill="none" stroke="#9CA3AF" stroke-width="2.5"/>
+    <text x="226" y="146" font-size="23" font-weight="700" fill="#9CA3AF" text-anchor="middle">S</text>
+  </g>
+
+  <!-- light taskbar -->
+  <g transform="translate(288 0)">
+    <rect width="272" height="176" rx="12" fill="#f3f3f3" stroke="#e0e0e0"/>
+    <text x="20" y="30" font-size="13" font-weight="600" fill="#1f2937">Light taskbar</text>
+    <text x="118" y="56" font-size="11" fill="#6b7280" text-anchor="middle">Caps</text>
+    <text x="172" y="56" font-size="11" fill="#6b7280" text-anchor="middle">Num</text>
+    <text x="226" y="56" font-size="11" fill="#6b7280" text-anchor="middle">Scroll</text>
+
+    <text x="20" y="95" font-size="12" font-weight="600" fill="#1f2937">ON</text>
+    <rect x="102" y="72" width="32" height="32" rx="7.7" fill="#16A34A"/>
+    <text x="118" y="96" font-size="23" font-weight="700" fill="#fff" text-anchor="middle">A</text>
+    <rect x="156" y="72" width="32" height="32" rx="7.7" fill="#2563EB"/>
+    <text x="172" y="96" font-size="23" font-weight="700" fill="#fff" text-anchor="middle">1</text>
+    <rect x="210" y="72" width="32" height="32" rx="7.7" fill="#D97706"/>
+    <text x="226" y="96" font-size="23" font-weight="700" fill="#fff" text-anchor="middle">S</text>
+
+    <text x="20" y="145" font-size="12" font-weight="600" fill="#1f2937">OFF</text>
+    <rect x="103.25" y="123.25" width="29.5" height="29.5" rx="7" fill="none" stroke="#4B5563" stroke-width="2.5"/>
+    <text x="118" y="146" font-size="23" font-weight="700" fill="#4B5563" text-anchor="middle">A</text>
+    <rect x="157.25" y="123.25" width="29.5" height="29.5" rx="7" fill="none" stroke="#4B5563" stroke-width="2.5"/>
+    <text x="172" y="146" font-size="23" font-weight="700" fill="#4B5563" text-anchor="middle">1</text>
+    <rect x="211.25" y="123.25" width="29.5" height="29.5" rx="7" fill="none" stroke="#4B5563" stroke-width="2.5"/>
+    <text x="226" y="146" font-size="23" font-weight="700" fill="#4B5563" text-anchor="middle">S</text>
+  </g>
+</svg>

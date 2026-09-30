@@ -1,0 +1,21 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net9.0-windows</TargetFramework>
+    <UseWindowsForms>true</UseWindowsForms>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <ApplicationHighDpiMode>PerMonitorV2</ApplicationHighDpiMode>
+    <ApplicationIcon>Resources\app.ico</ApplicationIcon>
+  </PropertyGroup>
+
+  <PropertyGroup Label="Package info">
+    <AssemblyName>LockLights</AssemblyName>
+    <RootNamespace>LockLights</RootNamespace>
+    <Product>LockLights</Product>
+    <Description>Caps Lock / Num Lock / Scroll Lock indicator for the Windows system tray</Description>
+    <Version>1.0.0</Version>
+  </PropertyGroup>
+
+</Project>

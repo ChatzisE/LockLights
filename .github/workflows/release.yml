@@ -1,0 +1,72 @@
+name: Build & Release
+
+on:
+  push:
+    branches: [main, master]
+    tags: ['v*']
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: 9.0.x
+
+      - name: Resolve version
+        id: ver
+        shell: pwsh
+        run: |
+          if ($env:GITHUB_REF_TYPE -eq 'tag') {
+            $v = $env:GITHUB_REF_NAME.TrimStart('v')
+            "args=-p:Version=$v" >> $env:GITHUB_OUTPUT
+          } else {
+            "args=" >> $env:GITHUB_OUTPUT
+          }
+
+      - name: Publish (needs .NET 9 Desktop Runtime)
+        run: >
+          dotnet publish src/LockLights/LockLights.csproj -c Release -r win-x64
+          --self-contained false
+          -p:PublishSingleFile=true -p:DebugType=none
+          ${{ steps.ver.outputs.args }}
+          -o out/fd
+
+      - name: Publish (standalone, no runtime needed)
+        run: >
+          dotnet publish src/LockLights/LockLights.csproj -c Release -r win-x64
+          --self-contained true
+          -p:PublishSingleFile=true -p:EnableCompressionInSingleFile=true
+          -p:IncludeNativeLibrariesForSelfExtract=true -p:DebugType=none
+          ${{ steps.ver.outputs.args }}
+          -o out/sc
+
+      - name: Collect files
+        shell: pwsh
+        run: |
+          New-Item -ItemType Directory dist | Out-Null
+          Copy-Item out/fd/LockLights.exe dist/LockLights.exe
+          Copy-Item out/sc/LockLights.exe dist/LockLights-standalone.exe
+          Get-FileHash dist/*.exe -Algorithm SHA256 |
+            ForEach-Object { "$($_.Hash.ToLower())  $(Split-Path $_.Path -Leaf)" } |
+            Set-Content dist/SHA256SUMS.txt
+          Get-ChildItem dist | Format-Table Name, Length
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: LockLights
+          path: dist/
+
+      - name: Create GitHub release
+        if: github.ref_type == 'tag'
+        uses: softprops/action-gh-release@v2
+        with:
+          files: dist/*
+          generate_release_notes: true

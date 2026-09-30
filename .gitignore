@@ -1,0 +1,10 @@
+bin/
+obj/
+publish/
+out/
+dist/
+.vs/
+.vscode/
+*.user
+*.suo
+.claude/
