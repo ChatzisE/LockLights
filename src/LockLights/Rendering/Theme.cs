@@ -46,11 +46,24 @@ internal static class Theme
         public static Color OffColor(bool lightTaskbar) => lightTaskbar ? OffOnLightTaskbar : OffOnDarkTaskbar;
     }
 
+    /// <summary>Popup colors for one Windows theme.</summary>
+    public sealed record OsdPalette(Color Background, Color Border, Color Text, Color OffText);
+
     public static class Osd
     {
-        public static readonly Color Background = Color.FromArgb(32, 32, 32);
-        public static readonly Color Text = Color.White;
-        public static readonly Color OffText = Tray.OffOnDarkTaskbar;
+        public static readonly OsdPalette Dark = new(
+            Background: Color.FromArgb(32, 32, 32),
+            Border: Color.FromArgb(58, 58, 58),
+            Text: Color.White,
+            OffText: Tray.OffOnDarkTaskbar);
+
+        public static readonly OsdPalette Light = new(
+            Background: Color.FromArgb(249, 249, 249),
+            Border: Color.FromArgb(214, 214, 214),
+            Text: Color.FromArgb(26, 26, 26),
+            OffText: Tray.OffOnLightTaskbar);
+
+        public static OsdPalette Palette(bool lightTheme) => lightTheme ? Light : Dark;
 
         public const int Width = 240;
         public const int Height = 60;
@@ -60,6 +73,7 @@ internal static class Theme
         public const int PaddingRight = 18;
         public const int BadgeSize = 34;
         public const int BadgeGap = 12;
+        public const float BorderWidth = 1;
 
         public const float NameFontSize = 17;
         public const FontStyle NameFontStyle = FontStyle.Regular;

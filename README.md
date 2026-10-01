@@ -8,7 +8,7 @@
 Many laptops and keyboards have no lock LEDs. This puts them in your tray instead.
 
 ![Windows 10/11](https://img.shields.io/badge/Windows-10%20%7C%2011-0078D4?logo=windows11&logoColor=white)
-![.NET 9](https://img.shields.io/badge/.NET-9-512BD4?logo=dotnet&logoColor=white)
+![.NET 10](https://img.shields.io/badge/.NET-10-512BD4?logo=dotnet&logoColor=white)
 ![Size](https://img.shields.io/badge/size-~200%20KB-16A34A)
 ![License: MIT](https://img.shields.io/badge/license-MIT-blue)
 
@@ -19,7 +19,7 @@ Many laptops and keyboards have no lock LEDs. This puts them in your tray instea
 </a>
 
 <sub>
-  Needs the <a href="https://dotnet.microsoft.com/download/dotnet/9.0">.NET 9 Desktop Runtime</a> ·
+  Needs the <a href="https://dotnet.microsoft.com/download/dotnet/10.0">.NET 10 Desktop Runtime</a> ·
   No .NET? Get the <a href="../../releases/latest/download/LockLights-standalone.exe">standalone build</a> ·
   <a href="../../releases">All releases</a>
 </sub>
@@ -37,7 +37,7 @@ Many laptops and keyboards have no lock LEDs. This puts them in your tray instea
 - 🟢 **A separate tray icon for each lock key**: **A** for Caps Lock, **1** for Num Lock, and **S** for Scroll Lock (off by default)
 - 💬 **On-screen popup** when a key changes. It never takes focus and clicks pass through it
 - 🖱️ **Left-click an icon** to toggle that key
-- 🌗 **Follows your theme** (light or dark taskbar) and stays sharp at any DPI / display scaling
+- 🌗 **Follows your Windows theme**: tray icons match the taskbar mode, the popup matches the app mode (light or dark), and both stay sharp at any DPI / display scaling
 - 🚀 **Start with Windows** in one click, with no installer and no admin rights
 - 🪶 **Tiny and light**: one ~200 KB exe, uses almost no CPU, and never logs or hooks your keystrokes
 
@@ -61,7 +61,7 @@ Many laptops and keyboards have no lock LEDs. This puts them in your tray instea
 
 | Download | Size | Requirements |
 | --- | --- | --- |
-| `LockLights.exe` | ~200 KB | [.NET 9 Desktop Runtime](https://dotnet.microsoft.com/download/dotnet/9.0) (x64) |
+| `LockLights.exe` | ~200 KB | [.NET 10 Desktop Runtime](https://dotnet.microsoft.com/download/dotnet/10.0) (x64) |
 | `LockLights-standalone.exe` | ~48 MB | None, the runtime is bundled |
 
 ## 🖱️ Usage
@@ -77,7 +77,7 @@ Settings are saved per user in `HKCU\Software\LockLights`.
 
 ## 🛠️ Build from source
 
-You need the [.NET 9 SDK](https://dotnet.microsoft.com/download/dotnet/9.0).
+You need the [.NET 10 SDK](https://dotnet.microsoft.com/download/dotnet/10.0).
 
 ```powershell
 git clone https://github.com/ChatzisE/LockLights.git
@@ -86,7 +86,7 @@ cd LockLights
 # run it
 dotnet run --project src/LockLights
 
-# single-file exe (needs .NET 9 Desktop Runtime) -> .\publish\LockLights.exe
+# single-file exe (needs .NET 10 Desktop Runtime) -> .\publish\LockLights.exe
 dotnet publish src/LockLights -c Release -r win-x64 --self-contained false -p:PublishSingleFile=true -o publish
 ```
 

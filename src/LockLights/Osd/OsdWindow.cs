@@ -18,6 +18,7 @@ internal sealed class OsdWindow : Form
 
     private LockKeyDefinition? _key;
     private bool _isOn;
+    private Theme.OsdPalette _palette = Theme.Osd.Dark;
     private float _scale;
     private Font? _nameFont;
     private Font? _stateFont;
@@ -28,7 +29,7 @@ internal sealed class OsdWindow : Form
         ShowInTaskbar = false;
         StartPosition = FormStartPosition.Manual;
         AutoScaleMode = AutoScaleMode.None; // we scale manually per monitor
-        BackColor = Theme.Osd.Background;
+        BackColor = _palette.Background;
         DoubleBuffered = true;
 
         _holdTimer.Tick += (_, _) =>
@@ -56,6 +57,8 @@ internal sealed class OsdWindow : Form
     {
         _key = key;
         _isOn = isOn;
+        _palette = Theme.Osd.Palette(WindowsTheme.IsAppsLight()); // read on every show to follow the current OS mode
+        BackColor = _palette.Background;
 
         Rectangle workArea = Screen.FromPoint(Cursor.Position).WorkingArea;
         SetScale(ScreenDpi.ScaleAt(new Point(workArea.Left + workArea.Width / 2, workArea.Top + workArea.Height / 2)));
@@ -87,16 +90,28 @@ internal sealed class OsdWindow : Form
 
         int badgeSize = Scaled(Theme.Osd.BadgeSize);
         var badgeBounds = new RectangleF(Scaled(Theme.Osd.PaddingLeft), (height - badgeSize) / 2f, badgeSize, badgeSize);
-        KeyBadgeRenderer.Draw(g, badgeBounds, _key.Glyph, _isOn, _key.Accent, Theme.Osd.OffText);
+        KeyBadgeRenderer.Draw(g, badgeBounds, _key.Glyph, _isOn, _key.Accent, _palette.OffText);
 
         int textLeft = (int)badgeBounds.Right + Scaled(Theme.Osd.BadgeGap);
         int textRight = ClientSize.Width - Scaled(Theme.Osd.PaddingRight);
         var textBounds = new Rectangle(textLeft, 0, textRight - textLeft, height);
 
         TextRenderer.DrawText(g, _key.DisplayName, _nameFont, textBounds,
-            Theme.Osd.Text, Theme.Osd.Background, TextFlags | TextFormatFlags.Left);
+            _palette.Text, _palette.Background, TextFlags | TextFormatFlags.Left);
         TextRenderer.DrawText(g, Strings.State(_isOn), _stateFont, textBounds,
-            _isOn ? Theme.Osd.Text : Theme.Osd.OffText, Theme.Osd.Background, TextFlags | TextFormatFlags.Right);
+            _isOn ? _palette.Text : _palette.OffText, _palette.Background, TextFlags | TextFormatFlags.Right);
+
+        DrawBorder(g);
+    }
+
+    /// <summary>Thin outline so the popup stays visible on a background of the same color.</summary>
+    private void DrawBorder(Graphics g)
+    {
+        float width = Math.Max(1f, Theme.Osd.BorderWidth * _scale);
+        var bounds = RectangleF.Inflate(new RectangleF(0, 0, ClientSize.Width, ClientSize.Height), -width / 2, -width / 2);
+        using var path = Shapes.RoundedRect(bounds, Scaled(Theme.Osd.CornerRadius) - width / 2);
+        using var pen = new Pen(_palette.Border, width);
+        g.DrawPath(pen, path);
     }
 
     protected override void WndProc(ref Message m)
